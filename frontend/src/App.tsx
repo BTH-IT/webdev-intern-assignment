@@ -1,7 +1,7 @@
 import './App.css';
 import styled from 'styled-components';
-import Product from './components/Product';
-import Cart from './components/Cart';
+import Products from './components/Products';
+import Carts from './components/Carts';
 
 const AppContainerStyled = styled.div`
   position: relative;
@@ -15,6 +15,10 @@ const AppContainerStyled = styled.div`
   padding: 0 20px;
   max-width: 760px;
   margin: 0 auto;
+
+  @media screen and (max-width: 726px){
+    max-width: 380px;
+  }
 
   @keyframes wave {
     0% {
@@ -45,8 +49,8 @@ const AppContainerStyled = styled.div`
 function App() {
   return (
     <AppContainerStyled>
-      <Product />
-      <Cart />
+      <Products />
+      <Carts />
     </AppContainerStyled>
   );
 }
