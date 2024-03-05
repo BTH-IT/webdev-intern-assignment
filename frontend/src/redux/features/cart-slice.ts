@@ -56,9 +56,11 @@ export const cartSlice = createSlice({
     },
     deleteCart(state, action: PayloadAction<{ cartId: number }>) {
       state.cartList = state.cartList.filter((cart) => {
-        state.totalPrice -= parseFloat(
-          Number(cart.count * cart.price).toFixed(2)
-        );
+        if (cart.id === action.payload.cartId) {
+          state.totalPrice -= parseFloat(
+            Number(cart.count * cart.price).toFixed(2)
+          );
+        }
         return cart.id !== action.payload.cartId;
       });
     },
