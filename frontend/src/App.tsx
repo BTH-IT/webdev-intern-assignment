@@ -16,17 +16,8 @@ const AppContainerStyled = styled.div`
   max-width: 760px;
   margin: 0 auto;
 
-  @media screen and (max-width: 726px){
+  @media screen and (max-width: 726px) {
     max-width: 380px;
-  }
-
-  @keyframes wave {
-    0% {
-      transform: translateX(-50%) skewY(-8deg);
-    }
-    100% {
-      transform: translateX(-55%) skewY(-8deg);
-    }
   }
 
   &::before {
