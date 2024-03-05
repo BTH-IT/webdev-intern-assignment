@@ -30,9 +30,12 @@ export const cartSlice = createSlice({
         );
         return cart;
       });
+
+      state.totalPrice = parseFloat(Number(state.totalPrice).toFixed(2));
     },
     decrease(state, action: PayloadAction<{ cartId: number }>) {
       state.totalPrice = 0;
+
       state.cartList = state.cartList.map((cart) => {
         if (cart.id === action.payload.cartId && cart.count >= 2) {
           state.totalPrice += parseFloat(
@@ -40,12 +43,16 @@ export const cartSlice = createSlice({
           );
           return cart;
         }
-        state.totalPrice += cart.count * cart.price;
+        state.totalPrice += parseFloat(
+          Number(cart.count * cart.price).toFixed(2)
+        );
         return cart;
       });
+
+      state.totalPrice = parseFloat(Number(state.totalPrice).toFixed(2));
     },
     addCart(state, action: PayloadAction<Omit<ICart, 'count'>>) {
-      state.totalPrice += Number(action.payload.price);
+      state.totalPrice += parseFloat(Number(action.payload.price).toFixed(2));
       state.cartList = [
         ...state.cartList,
         {
@@ -53,6 +60,8 @@ export const cartSlice = createSlice({
           count: 1,
         },
       ];
+
+      state.totalPrice = parseFloat(Number(state.totalPrice).toFixed(2));
     },
     deleteCart(state, action: PayloadAction<{ cartId: number }>) {
       state.cartList = state.cartList.filter((cart) => {
@@ -63,6 +72,8 @@ export const cartSlice = createSlice({
         }
         return cart.id !== action.payload.cartId;
       });
+
+      state.totalPrice = parseFloat(Number(state.totalPrice).toFixed(2));
     },
     setCart(state, action: PayloadAction<ICart[]>) {
       state.cartList = [...action.payload];
